@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <img src="https://static.nc-myus.com/images/pub/www/uploads/image/415ead923dee4ebd99c8d8ff151bea4d/How_to_Shop_Chalice_Collectibles_and_Ship_Internationally.png" style="width: 90px; height: 90px">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="basketball.html">Basketball (NBA)</a></li>
+                        <li><a class="dropdown-item" href="football.html">Football (NFL)</a></li>
+                        <li><a class="dropdown-item" href="baseball.html">Baseball (MLB)</a></li>
+                        <li><a class="dropdown-item" href="hockey.html">Hockey (NFL)</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-success">Cart</button>
+    </div>
+</nav>
+<div class="container py-4">
+    <div class="p-3 p-md-4 mb-4 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 fw-semibold">Cart</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody id="cartTable"></tbody>
+    </table>
+    <div class="bg-light rounded p-4">
+        <p id="totalAmount" class="fw-medium fs-4">Total: $0</p>
+        <p id="taxAmount" class="fs-5 text-secondary">Tax: $0</p>
+        <div class="border mb-3"></div>
+        <p id="finalAmount" class=" fw-semibold fs-2">Final: $0</p>
+    </div>
+</div>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">&copy; 2024 Chalice Collectibles</p>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href=index.html#" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="basketball.html" class="nav-link px-2 text-muted">Basketball</a></li>
+            <li class="nav-item"><a href="football.html" class="nav-link px-2 text-muted">Football</a></li>
+            <li class="nav-item"><a href="baseball.html" class="nav-link px-2 text-muted">Baseball</a></li>
+            <li class="nav-item"><a href="hockey.html" class="nav-link px-2 text-muted">Hockey</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link px-2 text-muted">About</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-muted">Contact</a></li>
+        </ul>
+        <p>
+            Sources used
+            <a href="https://blog.logrocket.com/localstorage-javascript-complete-guide/">Localstorage Tutorial</a>
+            <a href="https://www.w3schools.com/jsref/jsref_splice.asp">Splice function</a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Advanced JS Tutorial</a>
+        </p>
+    </footer>
+</div>
+<script>
+    const products = [
+        { id: "f1", imageUrl: "https://ehbh.short.gy/zuXgkk", title: "Autographed Tampa Bay Buccaneers Tom Brady Fanatics Super Bowl LV Champions", price: 3799.99 },
+        { id: "f2", imageUrl: "https://ehbh.short.gy/oBgQfR", title: "C.J. Stroud Houston Texans Authentic 2023 NFL Offensive Rookie of the Year Autographed", price: 649.39 },
+        { id: "f3", imageUrl: "https://ehbh.short.gy/fcv4gF", title: "Philadelphia Eagles Jason Kelce Highland Mint Framed Photo", price: 99.49 },
+        { id: "f4", imageUrl: "https://ehbh.short.gy/unvg8D", title: "Maxx Crosby Las Vegas Raiders Autographed Authentic Scream Photograph", price: 129.49 },
+        { id: "f5", imageUrl: "https://ehbh.short.gy/aVFejY", title: "Autographed New York Giants Lawrence Taylor Authentic Helmet Sit Photograph", price: 199.99 },
+        { id: "f6", imageUrl: "https://ehbh.short.gy/09mWpk", title: "Kansas City Chiefs Patrick Mahomes Authentic 2018 NFL MVP Framed Signature", price: 49.99 },
+        { id: "f7", imageUrl: "https://ehbh.short.gy/NAG5Fa", title: "Autographed Cleveland Browns Nick Chubb Authentic Riddell Speed Helmet", price: 309.99 },
+        { id: "f8", imageUrl: "https://ehbh.short.gy/z4pZsW", title: "Autographed Miami Dolphins Tua Tagovailoa 2020 Panini Rookie Card", price: 219.49 },
+        { id: "f9", imageUrl: "https://ehbh.short.gy/0lfMCr", title: "Autographed Los Angeles Rams Cooper Kupp Authentic Super Bowl LVI Champions Football", price: 699.49 },
+        { id: "f10", imageUrl: "https://ehbh.short.gy/qqljSa", title: "Autographed San Francisco 49ers Dwight Clark 1981 Topps Card", price: 299.99 },
+        { id: "f11", imageUrl: "https://ehbh.short.gy/KaFMb8", title: "Kansas City Chiefs Highland Mint Super Bowl LVIII Framed Signature Ticket", price: 69.49 },
+        { id: "f12", imageUrl: "https://ehbh.short.gy/dPGykg", title: "Autographed San Francisco 49ers Joe Montana Authentic Super Bowl XIX Pro Football", price: 749.99 },
+        { id: "bb1", imageUrl: "https://ehbh.short.gy/sVb5Uv", title: "Jackson Holliday Baltimore Orioles Autographed Authentic Baseball", price: 299.99 },
+        { id: "bb2", imageUrl: "https://ehbh.short.gy/WxwUkZ", title: "Bryce Harper Washington Nationals Autographed 2012 Topps Series 2 Celebration", price: 1049.39 },
+        { id: "bb3", imageUrl: "https://ehbh.short.gy/jLwuiJ", title: "Corbin Carroll Arizona Diamondbacks Autographed Authentic Jersey", price: 599.49 },
+        { id: "bb4", imageUrl: "https://ehbh.short.gy/XOO9Dq", title: "Mookie Betts Los Angeles Dodgers Autographed Authentic Batting Helmet", price: 489.49 },
+        { id: "bb5", imageUrl: "https://ehbh.short.gy/kSzCcy", title: "Reggie Jackson & Chris Chambliss New York Yankees Authentic Autographed Facade Plate", price: 209.99 },
+        { id: "bb6", imageUrl: "https://ehbh.short.gy/MMyYdZ", title: "Chicago Cubs Highland Mint World Series Ticket Collection", price: 67.99 },
+        { id: "bb7", imageUrl: "https://ehbh.short.gy/byKpqP", title: "Adolis Garcia Texas Rangers Autographed Authentic Jersey", price: 209.99 },
+        { id: "bb8", imageUrl: "https://ehbh.short.gy/hVeKX7", title: "Oneil Cruz Pittsburgh Pirates Autographed Authentic Photograph", price: 55.49 },
+        { id: "bb9", imageUrl: "https://ehbh.short.gy/BnMrEz", title: "Texas Rangers Fanatics Authentic Acrylic Cap Logo Display Case", price: 38.49 },
+        { id: "bb10", imageUrl: "https://ehbh.short.gy/pNhdCr", title: "Corey Seager Texas Rangers Autographed Authentic 2023 World Series Champions Photograph", price: 399.99 },
+        { id: "bb11", imageUrl: "https://ehbh.short.gy/9inBWD", title: "1995 Atlanta Braves Autographed Fanatics Authentic Baseball with 10 Signatures", price: 594.99 },
+        { id: "bb12", imageUrl: "https://ehbh.short.gy/KcnM6M", title: "Dwight Gooden New York Mets Authentic Autographed Photograph", price: 34.99 },
+        { id: "b1", imageUrl: "https://shorturl.at/cemG3", title: "Magic Johnson Los Angeles Lakers Authentic Autographed Jersey", price: 649.99 },
+        { id: "b2", imageUrl: "https://shorturl.at/iCJR4", title: "Carmelo Anthony Denver Nuggets Autographed Authentic Jersey", price: 594.39 },
+        { id: "b3", imageUrl: "https://shorturl.at/efzBC", title: "Larry Bird Boston Celtics Authentic Deluxe Framed Kit Jersey", price: 699.49 },
+        { id: "b4", imageUrl: "https://rb.gy/5c7z6f", title: "Shaquille O'Neal Orlando Magic Autographed 1992 Topps #362 Rookie Card", price: 489.49 },
+        { id: "b5", imageUrl: "https://rb.gy/usd32w", title: "Dwyane Wade Miami Heat Authentic Autographed Jersey", price: 599.99 },
+        { id: "b6", imageUrl: "https://rb.gy/u09m9j", title: "Dirk Nowitzki Dallas Mavericks Fanatics Authentic Hardwood Classic Sublimated Player Plaque", price: 27.99 },
+        { id: "b7", imageUrl: "https://rb.gy/b0edqx", title: "Jalen Brunson New York Knicks Autographed Authentic Photograph", price: 179.99 },
+        { id: "b8", imageUrl: "https://ehbh.short.gy/pltVE0", title: "Shai Gilgeous-Alexander Oklahoma City Thunder - Limited Edition of 250", price: 55.49 },
+        { id: "b9", imageUrl: "https://ehbh.short.gy/DQeJpR", title: "Nikola Jokic Denver Nuggets Impact Collage - Limited Edition of 250", price: 55.49 },
+        { id: "b10", imageUrl: "https://ehbh.short.gy/6rjGQ6", title: "Larry Bird Boston Celtics Autographed Cigar Celebration - Limited Edition of 33", price: 699.99 },
+        { id: "b11", imageUrl: "https://ehbh.short.gy/XoTSH3", title: "Dennis Rodman Chicago Bulls Autographed Authentic Diving Photograph", price: 97.99 },
+        { id: "b12", imageUrl: "https://ehbh.short.gy/VLbp9V", title: "Kevin Garnett Minnesota Timberwolves Authentic Autographed Black 1996-97 Jersey", price: 314.99 },
+        { id: "h1", imageUrl: "https://ehbh.short.gy/Umpam6", title: "Cale Makar Colorado Avalanche Autographed Inglasco Puck", price: 279.99 },
+        { id: "h2", imageUrl: "https://ehbh.short.gy/1aWbQ5", title: "Jack Hughes New Jersey Devils Autographed Authentic Official Game Puck", price: 69.39 },
+        { id: "h3", imageUrl: "https://ehbh.short.gy/91pgU9", title: "Autographed Washington Capitals Alexander Ovechkin Authentic 2022-23 Retro Jersey", price: 599.49 },
+        { id: "h4", imageUrl: "https://ehbh.short.gy/S3TrI7", title: "Washington Capitals Alex Ovechkin Authentic 2018 Stanley Cup Autographed Photograph", price: 139.49 },
+        { id: "h5", imageUrl: "https://ehbh.short.gy/mL3j0v", title: "Alexander Ovechkin Washington Capitals Autographed 2019-20 Card", price: 199.99 },
+        { id: "h6", imageUrl: "https://ehbh.short.gy/uzBsei", title: "Autographed Detroit Red Wings Lucas Raymond Authentic Jersey", price: 249.99 },
+        { id: "h7", imageUrl: "https://ehbh.short.gy/BHyTmd", title: "Autographed Colorado Avalanche Mikko Rantanen Authentic 2022-23 Official Game Puck", price: 62.99 },
+        { id: "h8", imageUrl: "https://ehbh.short.gy/ovHREu", title: "Vegas Golden Knights vs. Seattle Kraken Multi-Signed Authentic Print - Limited Edition of 24", price: 699.49 },
+        { id: "h9", imageUrl: "https://ehbh.short.gy/K2EzOM", title: "Ryan Donato Seattle Kraken Autographed Authentic Jersey", price: 179.49 },
+        { id: "h10", imageUrl: "https://ehbh.short.gy/83U6at", title: "Charlie McAvoy Boston Bruins Autographed Authentic Photograph", price: 41.99 },
+        { id: "h11", imageUrl: "https://ehbh.short.gy/qn1wXJ", title: "Autographed New York Rangers Mark Messier Authentic Hockey Puck", price: 132.49 },
+        { id: "h12", imageUrl: "https://ehbh.short.gy/vB6xdF", title: "Marc-Andre Fleury Pittsburgh Penguins Autographed 2006-07 Card", price: 90.99 },
+    ];
+
+    function removeFromCart(itemId) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const itemIndex = cart.findIndex(item => item.id === itemId);
+
+        if (itemIndex > -1) {
+            if (cart[itemIndex].quantity > 1) {
+                cart[itemIndex].quantity -= 1;
+            } else {
+                cart.splice(itemIndex, 1);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayLocalStorageItems();
+        }
+    }
+
+    function displayLocalStorageItems() {
+        const displayContainer = document.getElementById('cartTable');
+        displayContainer.innerHTML = '';
+        let total = 0;
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.forEach(cartItem => {
+            const item = products.find(item => item.id === cartItem.id);
+            if (item) {
+                const itemTotal = item.price * cartItem.quantity;
+                total += itemTotal;
+                var rowHTML = `
+                    <tr>
+                        <td class="align-middle">
+                            <div>
+                                <img src="${item.imageUrl}" class="flex-shrink-0 me-2 rounded" width="70" height="70">
+                                <strong class="text-gray-dark">${item.title}</strong>
+                            </div>
+                        </td>
+                        <td class="text-start align-middle">
+                            <strong>$${itemTotal}</strong>
+                        </td>
+                        <td class="text-center align-middle">
+                            ${cartItem.quantity}
+                        </td>
+                        <td class="text-start align-middle">
+                            <button type="button" class="btn btn-outline-danger" onclick="removeFromCart('${item.id}')">Remove</button>
+                        </td>
+                    </tr>`;
+                displayContainer.innerHTML += rowHTML;
+            }
+        });
+        updateCartTotal(total);
+    }
+
+    function updateCartTotal(total) {
+        const taxRate = 0.08875;
+        const taxAmount = total * taxRate;
+        const totalWithTax = total + taxAmount;
+
+        const totalContainer = document.getElementById('totalAmount');
+        totalContainer.textContent = `Total: $${total.toFixed(2)}`;
+        const taxContainer = document.getElementById('taxAmount');
+        taxContainer.textContent = `Tax: $${taxAmount.toFixed(2)}`;
+        const finalContainer = document.getElementById('finalAmount');
+        finalContainer.textContent = `Final: $${totalWithTax.toFixed(2)}`;
+    }
+
+    window.onload = displayLocalStorageItems;
+</script>
+</body>
+</html>
